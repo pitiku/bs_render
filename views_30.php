@@ -113,10 +113,10 @@ try {
 				</select>
 				<a href="?">Limpiar</a>
 			</form>
-			<a href="https://blightstone-production.up.railway.app/views_30.php">Views NEW</a> - 
-			<a href="https://blightstone-production.up.railway.app/errorReport_30.php">Error Report NEW</a> - 
+			<a href="https://bs-render.onrender.com/views_30.php">Views NEW</a> - 
+			<a href="https://bs-render.onrender.com/errorReport_30.php">Error Report NEW</a> - 
 			<a href="https://blightstone-production.up.railway.app">Views OLD</a> - 
-			<a href="https://blightstone-production.up.railway.app/errorReport.php">Error Report OLD</a> - 
+			<a href="https://bs-render.onrender.com/errorReport.php">Error Report OLD</a> - 
 		</div>
 
         <div class="table-responsive">
