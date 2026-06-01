@@ -32,23 +32,23 @@ try {
 
     if (!$tabla_actual) die("No hay tablas en la base de datos.");
 
-    // 2. Obtener datos (Limitado a 5000 para que no pete)
+    // 2. Obtener datos (Limitado a 500 para que no pete)
 	if ($filtro_seleccionado !== '')
 	{
 		try
 		{
 			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
 				WHERE id_session in (select id from B_session where version = '$filtro_seleccionado') 
-				ORDER BY id DESC LIMIT 5000");
+				ORDER BY id DESC LIMIT 500");
 		}
 		catch (PDOException $e)
 		{
-			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 5000");
+			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 500");
 		}
 	}
 	else
 	{
-		$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 5000");
+		$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 500");
 	}
     $datos = $stmt->fetchAll();
       
