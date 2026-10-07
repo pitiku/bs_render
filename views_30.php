@@ -37,9 +37,18 @@ try {
 	{
 		try
 		{
-			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
-				WHERE id_session in (select id from B_session where version = '$filtro_seleccionado') 
-				ORDER BY id DESC LIMIT 500");
+				if ($tabla_actual == 'B_session')
+				{
+					$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
+						WHERE version = '$filtro_seleccionado' 
+						ORDER BY id DESC LIMIT 500");
+				}
+				else
+				{
+					$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
+						WHERE id_session in (select id from B_session where version = '$filtro_seleccionado') 
+						ORDER BY id DESC LIMIT 500");
+				}
 		}
 		catch (PDOException $e)
 		{
