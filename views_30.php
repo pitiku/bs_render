@@ -41,24 +41,32 @@ try {
 				{
 					$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
 						WHERE version = '$filtro_seleccionado' 
-						ORDER BY id DESC LIMIT 500");
+						ORDER BY id DESC LIMIT 100");
 				}
 				else
 				{
 					$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
 						WHERE id_session in (select id from B_session where version = '$filtro_seleccionado') 
-						ORDER BY id DESC LIMIT 500");
+						ORDER BY id DESC LIMIT 100");
 				}
 		}
 		catch (PDOException $e)
 		{
-			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 500");
+			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 100");
 		}
 	}
 	else
 	{
-		$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 500");
+		try
+		{
+			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 10");
+		}
+		catch (PDOException $e)
+		{
+			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 10");
+		}
 	}
+	
     $datos = $stmt->fetchAll();
       
     $columnas = !empty($datos) ? array_keys($datos[0]) : [];
