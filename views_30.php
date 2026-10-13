@@ -52,7 +52,7 @@ try {
 		}
 		catch (PDOException $e)
 		{
-			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 100");
+			$stmt = $pdo->query("SELECT * FROM `$tabla_actual` ORDER BY id DESC LIMIT 10");
 		}
 	}
 	else
