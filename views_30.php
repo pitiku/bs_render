@@ -43,6 +43,12 @@ try {
 						WHERE version = '$filtro_seleccionado' 
 						ORDER BY id DESC LIMIT 100");
 				}
+				else if($tabla_actual == 'Z_errorsUnique')
+				{
+					$stmt = $pdo->query("SELECT id, id_session, timestamp, exception, message, version, location, node, 100 as save FROM `$tabla_actual` 
+						WHERE id_session in (select id from B_session where version = '$filtro_seleccionado') 
+						ORDER BY id DESC LIMIT 500");
+				}
 				else
 				{
 					$stmt = $pdo->query("SELECT * FROM `$tabla_actual` 
@@ -155,7 +161,8 @@ try {
                         <tr>
 <?php foreach ($fila as $col_name => $valor): ?>
     <?php $valor_limpio = $valor ?? ''; ?>
-    <td data-search="<?= htmlspecialchars($valor_limpio) ?>"> <?php if (stripos($col_name, 'save') !== false && !empty($valor)): ?>
+    <td data-search="<?= htmlspecialchars($valor_limpio) ?>"> 
+		<?php if (stripos($col_name, 'save') !== false && !empty($valor)): ?>
             <a href="download.php?t=<?= urlencode($tabla_actual) ?>&c=<?= urlencode($col_name) ?>&pk=<?= urlencode($pk_name) ?>&id=<?= urlencode($fila[$pk_name]) ?>" 
                class="btn btn-primary btn-sm px-2 py-0">📥 Descargar</a>
         <?php else: ?>
